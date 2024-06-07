@@ -25,4 +25,4 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
-        run: rspec
+        run: ./bin/rspec
