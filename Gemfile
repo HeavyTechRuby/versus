@@ -61,8 +61,12 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
   # Linter 
   gem 'rubocop', '~> 1.64', '>= 1.64.1', require: false
+
+  # Git hook manager
+  gem 'overcommit', '~> 0.63.0'
 end
 
 group :test do
