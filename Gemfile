@@ -62,8 +62,12 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-  # Linter 
+  # Linters
   gem 'rubocop', '~> 1.64', '>= 1.64.1', require: false
+  gem 'rubocop-rails', '~> 2.25', require: false
+  gem 'rubocop-rspec', '~> 3.0', '>= 3.0.1', require: false
+  gem 'rubocop-rspec_rails', '~> 2.30', require: false
+  gem 'rubocop-capybara', '~> 2.21', require: false
 end
 
 group :test do
