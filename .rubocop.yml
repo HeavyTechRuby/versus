@@ -1,3 +1,9 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-rspec_rails
+  - rubocop-capybara
+
 AllCops:
   NewCops: enable
   Exclude:
