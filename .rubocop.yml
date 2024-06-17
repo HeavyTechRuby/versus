@@ -13,3 +13,14 @@ AllCops:
     - '.git/**/*'
     - 'bin/*'
   TargetRubyVersion: 3.3
+
+Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - db/schema.rb
+  Max: 30
+
+Lint/EmptyBlock:
+   Enabled: false
