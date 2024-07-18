@@ -1,9 +1,9 @@
-<h1>Новый Versus</h1>
+<%= tag.h1(t('versus.new')) %>
 
 <%= render "form", competition: @competition %>
 
 <br>
 
 <div>
-  <%= link_to "Назад", competitions_path %>
+  <%= link_to t('back'), competitions_path %>
 </div>

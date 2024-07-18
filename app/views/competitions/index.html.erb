@@ -6,7 +6,7 @@
     <div class="card-body">
       <p class="card-text"><%= competition.description.truncate(50) %></p>
       <% if can? :edit, competition %>
-        <%= link_to 'Редактировать Versus', edit_competition_path(competition), class: 'btn btn-primary' %>
+        <%= link_to t('versus.edit'), edit_competition_path(competition), class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>

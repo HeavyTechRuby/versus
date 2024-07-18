@@ -1,0 +1,17 @@
+ru:
+  versus:
+    new: "Новый Versus"
+    edit: "Редактировать Versus"
+    update: "Обновить Versus"
+    add: "Создать Versus"
+
+  back: "Назад"
+
+  helpers:
+    submit:
+      competition:
+        create: "Создать Versus"
+        update: "Сохранить Versus"
+
+  header:
+    project_name: "Versus"
