@@ -1,0 +1,13 @@
+<% @competitions.each do |competition| %>
+  <div class="card">
+    <div class="card-header">
+      <%= link_to competition.name, competition_path(competition) %>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%= competition.description.truncate(50) %></p>
+      <% if can? :edit, competition %>
+        <%= link_to 'Редактировать Versus', edit_competition_path(competition), class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
