@@ -11,7 +11,7 @@ ru:
     submit:
       competition:
         create: "Создать Versus"
-        update: "Сохранить Versus"
+        update: "Обновить Versus"
 
   header:
     project_name: "Versus"
