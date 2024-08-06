@@ -24,3 +24,6 @@ Metrics/BlockLength:
 
 Lint/EmptyBlock:
    Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
