@@ -6,7 +6,7 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    return unless user.present?
+    return if user.blank?
 
     can :manage, Competition, author_id: user.id
     #   return unless user.admin?

@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe "Welcomes", type: :request do
-  describe "GET /index" do
+RSpec.describe 'Welcomes' do
+  describe 'GET /index' do
     subject(:welcome_response) do
-      get "/"
+      get '/'
       response
     end
 
-    it "returns http success" do
+    it 'returns http success' do
       expect(welcome_response).to have_http_status(:success)
     end
   end

@@ -4,6 +4,8 @@ ru:
     edit: "Редактировать Versus"
     update: "Обновить Versus"
     add: "Создать Versus"
+    created: "Versus успешно создан."
+    updated: "Versus успешно обновлен."
 
   back: "Назад"
 

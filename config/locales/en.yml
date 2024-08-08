@@ -4,6 +4,8 @@ en:
     new: "New Versus"
     update: "Update Versus"
     add: "Create Versus"
+    created: "Versus was successfully created."
+    updated: "Versus was successfully updated."
 
   back: "Back"
 

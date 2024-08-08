@@ -7,16 +7,21 @@ class CompetitionsController < ApplicationController
     @competitions = Competition.all
   end
 
+  def show; end
+
   def new
     @competition = Competition.new
   end
 
+  def edit
+    authorize!(:edit, @competition)
+  end
+
   def create
-    create_params = competition_params.merge(author_id: current_user.id)
-    @competition = Competition.new(create_params)
+    @competition = Competition.new(create_competition_params)
     respond_to do |format|
       if @competition.save
-        format.html { redirect_to competition_path(@competition), notice: 'Competition was successfully created.' }
+        format.html { redirect_to competition_path(@competition), notice: t('versus.created') }
         format.json { render :show, status: :created, location: @competition }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -25,18 +30,12 @@ class CompetitionsController < ApplicationController
     end
   end
 
-  def show; end
-
-  def edit
-    authorize!(:edit, @competition)
-  end
-
   def update
     authorize!(:update, @competition)
 
     respond_to do |format|
       if @competition.update(competition_params)
-        format.html { redirect_to competition_path(@competition), notice: 'Competition was successfully updated.' }
+        format.html { redirect_to competition_path(@competition), notice: t('versus.updated') }
         format.json { render :show, status: :ok, location: @competition }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,5 +54,9 @@ class CompetitionsController < ApplicationController
 
   def competition_params
     params.require(:competition).permit(:name, :description)
+  end
+
+  def create_competition_params
+    competition_params.merge(author_id: current_user.id)
   end
 end

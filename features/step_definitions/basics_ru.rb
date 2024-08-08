@@ -1,9 +1,9 @@
 Дано('я гость') do
-  context.set_user Testing::Guest.new
+  context.current_user = Testing::Guest.new
 end
 
 Дано('я участник') do
-  context.set_user User.create(username: 'TestUser')
+  context.current_user = User.create(username: 'TestUser')
 end
 
 Когда(/^я открываю (.+)$/) do |path|
@@ -15,9 +15,9 @@ end
 end
 
 Когда(/^создан мой versus$/) do
-  context.set_versus Competition.create(name: 'Test',
-                                        description: 'TestDescription',
-                                        author_id: context.current_user.id)
+  context.current_versus = Competition.create(name: 'Test',
+                                              description: 'TestDescription',
+                                              author_id: context.current_user.id)
 end
 
 Тогда(/^вижу текст "([^"]*)"$/) do |text|

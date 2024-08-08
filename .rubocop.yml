@@ -12,14 +12,16 @@ AllCops:
     - 'tmp/**/*'
     - '.git/**/*'
     - 'bin/*'
+    - 'db/schema.rb'
   TargetRubyVersion: 3.3
 
 Documentation:
   Enabled: false
 
 Metrics/BlockLength:
-  Exclude:
-    - db/schema.rb
+  Max: 30
+
+Metrics/MethodLength:
   Max: 30
 
 Lint/EmptyBlock:
@@ -27,3 +29,7 @@ Lint/EmptyBlock:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Naming/AsciiIdentifiers:
+  Exclude:
+    - features/**/*
