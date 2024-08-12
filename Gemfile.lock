@@ -89,6 +89,7 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.8, < 3)
     builder (3.2.4)
+    cancancan (3.6.1)
     capybara (3.40.0)
       addressable
       matrix
@@ -372,6 +373,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap (= 5.3.3)
+  cancancan
   capybara
   cucumber-rails
   database_cleaner

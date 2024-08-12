@@ -45,6 +45,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'bootstrap', '5.3.3'
+gem 'cancancan'
 gem 'sassc-rails', '2.1.2'
 
 group :development, :test do
