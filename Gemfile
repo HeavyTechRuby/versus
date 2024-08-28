@@ -46,6 +46,10 @@ gem 'bootsnap', require: false
 
 gem 'bootstrap', '5.3.3'
 gem 'cancancan'
+gem 'devise', '~> 4.9'
+gem 'dotenv-rails'
+gem 'omniauth-github', '~> 2.0.0'
+gem 'omniauth-rails_csrf_protection'
 gem 'sassc-rails', '2.1.2'
 
 group :development, :test do
@@ -76,6 +80,7 @@ group :test do
   gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'faker'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end

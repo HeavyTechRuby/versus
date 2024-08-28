@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.json { head :forbidden }
@@ -8,15 +11,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :current_user, :logged_in?
+  protected
 
-  private
-
-  def current_user
-    @current_user ||= User.find(1)
-  end
-
-  def logged_in?
-    current_user != nil
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
   end
 end

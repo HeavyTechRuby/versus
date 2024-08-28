@@ -33,3 +33,6 @@ Style/FrozenStringLiteralComment:
 Naming/AsciiIdentifiers:
   Exclude:
     - features/**/*
+
+Style/FetchEnvVar:
+  Enabled: false

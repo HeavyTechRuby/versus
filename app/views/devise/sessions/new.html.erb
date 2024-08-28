@@ -1,0 +1,62 @@
+<div class="row d-flex justify-content-center align-items-center h-100">
+  <div class="col-xl-4 mt-md-3">
+    <h2 class="bold mb-4">Sign in to Versus</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-outline mb-4">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                          placeholder: "Username or Email",
+                          class: 'form-control form-control',
+                          required: true %>
+      </div>
+
+      <div class="form-outline mb-4">
+        <div class="input-group" data-controller="password-visibility" data-password-visibility-hidden-class="invisible">
+          <%= f.password_field :password, placeholder: "Password",
+                               class: 'form-control',
+                               spellcheck: "false",
+                               data: { 'password-visibility-target' => 'input' },
+                               required: true %>
+
+          <%= button_tag name: 'password-button',
+                         type: 'button',
+                         class: 'btn btn-outline-secondary position-relative',
+                         data: { action: 'password-visibility#toggle' } do %>
+            <span data-password-visibility-target="icon" class="position-absolute translate-middle">
+              <i class="bi bi-eye"></i>
+            </span>
+            <span data-password-visibility-target="icon" class="position-absolute translate-middle invisible">
+              <i class="bi bi-eye-slash"></i>
+            </span>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col d-flex justify-content-center">
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me, class: 'form-check-input' %>
+              <%= f.label :remember_me, class: 'form-check-label' %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col">
+          <%= link_to "Forgot your password?", new_user_password_path %><br />
+        </div>
+      </div>
+
+      <div class="d-grid mx-auto">
+        <%= f.submit "Sign in", class: 'btn btn-primary mb-4' %>
+      </div>
+    <% end %>
+
+    <div class="text-center">
+      <p>New on Versus? <%= link_to 'Register', new_user_registration_path %></p>
+      <p>or sign in with:</p>
+      <%= render "devise/shared/omniauth_links" %>
+    </div>
+  </div>
+</div>

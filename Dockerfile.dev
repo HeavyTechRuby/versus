@@ -25,8 +25,10 @@ RUN dpkg -i google-chrome.deb
 RUN sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
 RUN rm google-chrome.deb
 
-COPY Gemfile* /usr/src/app/
-WORKDIR /usr/src/app
+ENV APP_PATH=/usr/src/app
+
+WORKDIR $APP_PATH
+COPY Gemfile* $APP_PATH
 RUN bundle install
 
-COPY . /usr/src/app/
+COPY . $APP_PATH

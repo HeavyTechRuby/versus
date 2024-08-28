@@ -6,6 +6,7 @@ ru:
     add: "Создать Versus"
     created: "Versus успешно создан."
     updated: "Versus успешно обновлен."
+    requires_authentication: 'Требуется аутентификация'
 
   back: "Назад"
 

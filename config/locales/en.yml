@@ -6,6 +6,7 @@ en:
     add: "Create Versus"
     created: "Versus was successfully created."
     updated: "Versus was successfully updated."
+    requires_authentication: "Requires authentication"
 
   back: "Back"
 
