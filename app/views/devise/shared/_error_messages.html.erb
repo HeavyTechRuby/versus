@@ -12,8 +12,8 @@
       </div>
     <% end %>
 
-    <% flash.each do |_type, message| %>
-      <div class="alert alert-danger d-flex justify-content-between align-items-center fade show" role="alert">
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= notice_type(type) %> d-flex justify-content-between align-items-center fade show" role="alert">
         <div class="d-flex justify-content-between">
           <i class="bi bi-exclamation-triangle me-1"></i>
           <div class="text-break">
