@@ -18,3 +18,15 @@ ru:
 
   header:
     project_name: "Versus"
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "слишком короткий"
+            password_confirmation:
+              confirmation: "не совпадает"
+            email:
+              taken: "уже занят"
