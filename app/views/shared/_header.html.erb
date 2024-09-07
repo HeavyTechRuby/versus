@@ -7,7 +7,7 @@
           <%= current_user.email %>
         </button>
         <ul class="dropdown-menu dropdown-menu-start dropdown-menu-light">
-          <li><%= button_to t('devise.sessions.signed_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
+          <li><%= button_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
         </ul>
       </div>
     <% else %>

@@ -118,6 +118,7 @@ en:
       new:
         sign_in: Sign in to Versus
       signed_in: Signed in successfully.
+      sign_out: Sign out
       signed_out: Signed out successfully.
     shared:
       links:

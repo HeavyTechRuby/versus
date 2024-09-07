@@ -120,6 +120,7 @@ ru:
       new:
         sign_in: Войти в Versus
       signed_in: Вход в систему выполнен.
+      sign_out: Выйти
       signed_out: Выход из системы выполнен.
     shared:
       links:
