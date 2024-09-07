@@ -8,7 +8,7 @@ end
 end
 
 Дано('versus c названием {string} и описанием {string}') do |name, description|
-  FactoryBot.create(:competition, name: name, description: description)
+  FactoryBot.create(:competition, name:, description:)
 end
 
 Когда(/^я открываю (.+)$/) do |path|
