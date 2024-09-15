@@ -13,6 +13,7 @@ shared_examples 'with GitHub authentication', :with_github_auth do
   context 'when authenticated with Github' do
     before do
       OmniAuth.config.test_mode = true
+      OmniAuth.config.add_mock(:github, OmniAuth::AuthHash.new(Faker::Omniauth.github))
       Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
       Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:github]
       post user_github_omniauth_callback_path
@@ -40,7 +41,7 @@ end
 
 shared_examples 'without access to resource', :without_access_to_resource do
   context 'when try to access to resource belongs to another user' do
-    let(:another_user) { create(:user) }
+    let(:another_user) { create(:user, email: 'another_test@test.com') }
     let(:path) { root_path }
 
     it 'returns error' do

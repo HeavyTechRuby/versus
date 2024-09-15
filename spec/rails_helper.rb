@@ -68,7 +68,6 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.clean_with :truncation
-    OmniAuth.config.add_mock(:github, OmniAuth::AuthHash.new(Faker::Omniauth.github))
   end
 
   config.before do

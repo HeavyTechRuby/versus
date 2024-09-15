@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rails_helper'
+
 RSpec.describe 'Competitions' do
   let(:valid_attributes) { attributes_for(:competition, author: user) }
 
@@ -16,8 +18,7 @@ RSpec.describe 'Competitions' do
     end
 
     before do
-      user = create(:user)
-      create(:competition, author: user)
+      create(:competition, author: create(:user))
     end
 
     it 'renders a successful response' do
@@ -50,14 +51,14 @@ RSpec.describe 'Competitions' do
 
     let(:request_params) { { competition: valid_attributes } }
 
+    it_behaves_like 'with GitHub authentication'
+
     it 'creates a new Competition' do
       aggregate_failures do
         expect { create_competition_response }.to change(Competition, :count).by(1)
-        expect(create_competition_response).to redirect_to('/competitions/1')
+        expect(create_competition_response).to redirect_to(competition_path(Competition.last))
       end
     end
-
-    it_behaves_like 'with GitHub authentication'
 
     context 'with invalid parameters' do
       let(:request_params) { { competition: invalid_attributes } }
@@ -87,14 +88,18 @@ RSpec.describe 'Competitions' do
       }
     end
 
+    it_behaves_like 'with GitHub authentication'
+
+    it_behaves_like 'without access to resource' do
+      let(:competition) { create(:competition, author: another_user) }
+    end
+
     it 'updates a Competition' do
       aggregate_failures do
         expect(update_competition_response).to redirect_to("/competitions/#{competition.id}")
         expect(competition.reload.name).to eq(request_params[:competition][:name])
       end
     end
-
-    it_behaves_like 'with GitHub authentication'
 
     context 'with invalid parameters' do
       let(:request_params) do
@@ -108,10 +113,6 @@ RSpec.describe 'Competitions' do
       it 'does not update a Competition' do
         expect(update_competition_response).to have_http_status(:unprocessable_entity)
       end
-    end
-
-    it_behaves_like 'without access to resource' do
-      let(:competition) { create(:competition, author: another_user) }
     end
   end
 end
