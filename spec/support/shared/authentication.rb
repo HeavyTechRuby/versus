@@ -13,7 +13,8 @@ shared_examples 'with GitHub authentication', :with_github_auth do
   context 'when authenticated with Github' do
     before do
       OmniAuth.config.test_mode = true
-      OmniAuth.config.add_mock(:github, OmniAuth::AuthHash.new(Faker::Omniauth.github))
+      OmniAuth.config.add_mock(:github,
+                               OmniAuth::AuthHash.new(JSON.parse(read_fixture_file('omniauth/github.json'))))
       Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
       Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:github]
       post user_github_omniauth_callback_path
