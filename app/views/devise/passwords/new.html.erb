@@ -1,0 +1,20 @@
+<div class="row d-flex justify-content-center align-items-center h-100">
+  <div class="col-xl-4 mt-md-3">
+    <h2 class="bold mb-4"><%= t('devise.passwords.new.forgot_your_password') %></h2>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-outline mb-4">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                          placeholder:  t('activerecord.attributes.user.email'),
+                          class: 'form-control form-control',
+                          required: true %>
+      </div>
+
+      <div class="d-grid mx-auto">
+        <%= f.submit t('devise.passwords.new.send_me_reset_password_instructions'), class: 'btn btn-primary mb-4' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,5 +1,20 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
+  <div class="container">
     <%= link_to t('header.project_name'), root_path, class: "navbar-brand" %>
+    <% if user_signed_in? %>
+      <div class="dropdown">
+        <button class="btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= current_user.email %>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-start dropdown-menu-light">
+          <li><%= button_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
+        </ul>
+      </div>
+    <% else %>
+      <div class="d-flex flex-row">
+        <%= link_to t('devise.sessions.new.sign_in'), user_session_path, class: 'btn btn-light me-2' %>
+        <%= link_to t('devise.registrations.new.sign_up'), new_user_registration_path, class: 'btn btn-dark' %>
+      </div>
+    <% end %>
   </div>
 </nav>

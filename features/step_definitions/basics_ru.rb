@@ -3,7 +3,12 @@
 end
 
 Дано('я участник') do
-  context.current_user = User.create(username: 'TestUser')
+  context.current_user = FactoryBot.create(:user)
+  login_user(context.current_user)
+end
+
+Дано('versus c названием {string} и описанием {string}') do |name, description|
+  FactoryBot.create(:competition, name:, description:)
 end
 
 Когда(/^я открываю (.+)$/) do |path|
@@ -15,9 +20,7 @@ end
 end
 
 Когда(/^создан мой versus$/) do
-  context.current_versus = Competition.create(name: 'Test',
-                                              description: 'TestDescription',
-                                              author_id: context.current_user.id)
+  context.current_versus = FactoryBot.create(:competition, author: context.current_user)
 end
 
 Тогда(/^вижу текст "([^"]*)"$/) do |text|

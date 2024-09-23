@@ -1,0 +1,27 @@
+<% if resource.errors.any? || flash.any? %>
+  <div id="error_explanation" data-turbo-cache="false">
+    <% resource.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger d-flex justify-content-between align-items-center fade show" role="alert">
+        <div class="d-flex justify-content-between">
+          <i class="bi bi-exclamation-triangle me-1"></i>
+          <div class="text-break">
+            <%= message %>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= notice_type(type) %> d-flex justify-content-between align-items-center fade show" role="alert">
+        <div class="d-flex justify-content-between">
+          <i class="bi bi-exclamation-triangle me-1"></i>
+          <div class="text-break">
+            <%= message %>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+  </div>
+<% end %>

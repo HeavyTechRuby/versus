@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CompetitionsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
   before_action :find_competition, only: %i[show edit update destroy]
 
   def index

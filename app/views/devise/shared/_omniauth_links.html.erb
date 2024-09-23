@@ -1,0 +1,15 @@
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+
+    <%- if provider.to_s.downcase == 'github' %>
+      <%= button_to omniauth_authorize_path(resource_name, provider),
+                    class: 'btn btn-secondary',
+                    id: "#{provider.to_s.downcase}-button",
+                    data: { turbo: false } do %>
+        <span class="bi bi-github"/>
+      <% end %>
+    <% end %>
+
+    <br />
+  <% end %>
+<% end %>

@@ -3,15 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Competitions' do
-  let!(:user) { User.create(id: 1, username: 'test') }
-
-  let(:valid_attributes) do
-    {
-      name: 'valid name',
-      description: 'some description',
-      author_id: user.id
-    }
-  end
+  let(:valid_attributes) { attributes_for(:competition, author: user) }
 
   let(:invalid_attributes) do
     {
@@ -25,7 +17,9 @@ RSpec.describe 'Competitions' do
       response
     end
 
-    before { Competition.create!(valid_attributes) }
+    before do
+      create(:competition, author: create(:user))
+    end
 
     it 'renders a successful response' do
       expect(competitions_response).to have_http_status(:success)
@@ -38,7 +32,8 @@ RSpec.describe 'Competitions' do
       response
     end
 
-    let!(:competition) { Competition.create!(valid_attributes) }
+    let!(:competition) { create(:competition, author: user) }
+    let!(:user) { create(:user) }
 
     it 'renders a successful response' do
       aggregate_failures do
@@ -48,7 +43,7 @@ RSpec.describe 'Competitions' do
     end
   end
 
-  describe 'POST /competitions' do
+  describe 'POST /competitions', :requires_auth, :with_auth do
     subject(:create_competition_response) do
       post '/competitions/', params: request_params
       response
@@ -56,10 +51,12 @@ RSpec.describe 'Competitions' do
 
     let(:request_params) { { competition: valid_attributes } }
 
+    it_behaves_like 'with GitHub authentication'
+
     it 'creates a new Competition' do
       aggregate_failures do
         expect { create_competition_response }.to change(Competition, :count).by(1)
-        expect(create_competition_response).to redirect_to('/competitions/1')
+        expect(create_competition_response).to redirect_to(competition_path(Competition.last))
       end
     end
 
@@ -75,13 +72,13 @@ RSpec.describe 'Competitions' do
     end
   end
 
-  describe 'PATCH /competitions/:id' do
+  describe 'PATCH /competitions/:id', :requires_auth, :with_auth do
     subject(:update_competition_response) do
       patch "/competitions/#{competition.id}", params: request_params
       response
     end
 
-    let!(:competition) { Competition.create!(valid_attributes) }
+    let(:competition) { create(:competition, author: user) }
 
     let(:request_params) do
       {
@@ -89,6 +86,12 @@ RSpec.describe 'Competitions' do
           name: 'new name'
         }
       }
+    end
+
+    it_behaves_like 'with GitHub authentication'
+
+    it_behaves_like 'without access to resource' do
+      let(:competition) { create(:competition, author: another_user) }
     end
 
     it 'updates a Competition' do
@@ -109,17 +112,6 @@ RSpec.describe 'Competitions' do
 
       it 'does not update a Competition' do
         expect(update_competition_response).to have_http_status(:unprocessable_entity)
-      end
-    end
-
-    context 'when competition has another author' do
-      before do
-        new_author = User.create(username: 'NewAuthor')
-        competition.update(author_id: new_author.id)
-      end
-
-      it 'redirect to root path' do
-        expect(update_competition_response).to redirect_to(root_path)
       end
     end
   end

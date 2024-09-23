@@ -6,6 +6,7 @@ en:
     add: "Create Versus"
     created: "Versus was successfully created."
     updated: "Versus was successfully updated."
+    requires_authentication: "Requires authentication"
 
   back: "Back"
 
@@ -17,3 +18,15 @@ en:
 
   header:
     project_name: "Versus"
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "is too short"
+            password_confirmation:
+              confirmation: "doesn't match"
+            email:
+              taken: "is already taken"
